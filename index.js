@@ -7,7 +7,7 @@ const retweet = id => {
 };
 
 const work = () => {
-	T.get('search/tweets', { q: '#devfestkano' }, function(err, data, response) {
+	T.get('search/tweets', { q: '#devfestkano, #DevFestKano, #DEVFESTKANO, #DevfestKano' }, function(err, data, response) {
 		if (!err && data && data.statuses) {
 			data.statuses.map(d => retweet(d.id_str));
 		}
