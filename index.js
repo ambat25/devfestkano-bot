@@ -6,8 +6,16 @@ const retweet = id => {
 	T.post('statuses/retweet/:id', { id: `${id}` }, function(err, data, response) {});
 };
 
+const hashTags = [
+  '#devfestkano',
+  '#DevFestKano',
+  '#DEVFESTKANO',
+  '#DevfestKano',
+  '#DevFestKano2019'
+];
+
 const work = () => {
-	T.get('search/tweets', { q: '#devfestkano, #DevFestKano, #DEVFESTKANO, #DevfestKano' }, function(err, data, response) {
+	T.get('search/tweets', { q: hashTags.join(', ') }, function(err, data, response) {
 		if (!err && data && data.statuses) {
 			data.statuses.map(d => retweet(d.id_str));
 		}
